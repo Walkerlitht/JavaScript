@@ -1,0 +1,121 @@
+:root {
+    --cor-azul-escuro: rgb(7, 7, 121);
+    --cor-azul-claro: rgb(74, 74, 243);
+}
+
+html,
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-azul-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: -2;
+}
+
+.botao {
+    background-color: blue;
+    border: 5px solid var(--cor-azul-claro);
+    box-shadow: 0 0 10px 2px blue;
+    border-radius: 10px;
+    padding: 0.8rem 4rem;
+    position: relative;
+    text-shadow: 0 0 2px var(--cor-azul-escuro);
+    color: black;
+}
+
+.botao:hover {
+    background-color: var(--cor-azul-claro);
+}
+
+.botao::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 120%;
+    background-color: blue;
+
+    transform: perspective(1rem) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1.5rem) brightness(1.5) opacity(0.7);
+}
+
+.titulo {
+    position: relative;
+    margin-inline: auto;
+    text-shadow:
+        0 -1.8px 2px var(--cor-azul-escuro),
+        0 -2.2px 5px var(--cor-azul-claro),
+        0 -2.4px 1px hsl(0 0% 100% / 0.8);
+    filter: blur(0.2px);
+}
+
+.titulo::before {
+    content: 'Olá mundo!';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    transform: perspective(1rem) rotateX(200deg) scale(0.9);
+    background-color: transparent;
+    color: transparent;
+    text-shadow: 0 -8.6px 0.1px hsl(0 0% 0% / .3);
+    filter: blur(1px);
+}
+
+.Meu-site {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border: 2px solid hsl(240, 100%, 50%);
+    background-color: var(--cor-azul-escuro);
+    border-radius: 0.125rem;
+    margin-bottom: 50px;
+    contain: content;
+}
+
+.Meu-site::before {
+    content: "";
+    width: 150%;
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: var(--cor-azul-claro);
+    z-index: -1;
+}
+
+.pulse::before {
+    animation: pulse 0.2s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.8;
+    }
+    45% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.5;
+    }
+    90% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+        filter: brightness(1.5);
+    }
+}
